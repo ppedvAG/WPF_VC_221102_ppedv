@@ -1,0 +1,34 @@
+﻿<Window x:Class="HalloWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:HalloWPF"        
+        Title="MainWindow" Height="102" Width="292">
+    <Window.Content>
+        <StackPanel>
+            <StackPanel.Children>
+
+                <Button x:Name="Btn_BspButton"
+                        Content="Ich bin ein Button"
+                        Background="#FF55F706"
+                        Margin="20, 10, 5, 1"
+                        HorizontalAlignment="Center"
+                        Click="Btn_BspButton_Click"/>
+
+                <Button>
+                    <Button.Content>
+                        <TextBox Width="50"/>
+                    </Button.Content>
+                    
+                    <Button.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="LightBlue" Offset="0"/>
+                            <GradientStop Color="Yellow" Offset="0.5"/>
+                            <GradientStop Color="DarkBlue" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </StackPanel.Children>
+        </StackPanel>
+    </Window.Content>
+</Window> 
