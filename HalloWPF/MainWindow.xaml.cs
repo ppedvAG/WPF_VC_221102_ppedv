@@ -22,16 +22,18 @@ namespace HalloWPF
     {
         public MainWindow()
         {
+            //Dies verweist auf eine Methode in der (versteckten) automatisch generierten zweiten Klassen-Datei (*.g.i.cs),
+            //welche für das Rendering des XAML-Codes verantwortlich ist. InitializeComponent() erstellt die
+            //Steuerelement-Objekte und muss daher als erste Methode des Konstruktors bestehen bleiben
             InitializeComponent();
-
-            Btn_BspButton.Content = "Code-seitige Belegung";
         }
 
-        private void Btn_BspButton_Click(object sender, RoutedEventArgs e)
+        private void Btn_BeispielButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Background = new SolidColorBrush(Colors.Violet);
-
-            (sender as Button).Content = "Button wurde geklickt";
+            //Verändern des Inhalts des Buttons
+            Btn_BeispielButton.Content = "Ich wurde angeklickt";
+            //Ändern einer UI-Property über den Sender-Parameter (beinhaltet den Verursacher des Events)
+            (sender as Button).Content = "Ich wurde angeklickt";
         }
     }
 }
