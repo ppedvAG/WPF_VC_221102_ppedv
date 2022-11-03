@@ -37,6 +37,8 @@
                Stretch="Uniform"
                Height="60"/>
 
+
+
         <!--In einer Textbox kann der User Strings eingeben. Mittels AcceptsReturn wird die Return-Taste für Zeilenumbrüche
         freigegeben.-->
         <TextBox x:Name="Tbx_Input"
@@ -44,8 +46,10 @@
                  Height="60"
                  AcceptsReturn="True"
                  AcceptsTab="True"
-                 TextWrapping="WrapWithOverflow">
+                 TextWrapping="WrapWithOverflow"
+                 VerticalScrollBarVisibility="Visible">
             <TextBox.ContextMenu>
+                <!--Die meisten Steuerelemente haben eine ContextMenu-Property, in welche ein ContextMenu eingepflegt werden kann (vgl. Menu).-->
                 <ContextMenu>
                     <MenuItem Header="Kopieren"/>
                     <MenuItem Header="Einfügen"/>
@@ -84,23 +88,32 @@
                 TickFrequency="10"
                 IsSnapToTickEnabled="True"/>
 
+        <!--Seperatoren sind visuelle Abgrenzungen-->
+        <Separator Margin="10"/>
+
+        <!--Mittels der ProgressBar können prozentuale Fortschritte visualisiert werden. Mit IsIndeterminate kann ein bewegender Balken
+        dargestellt werden.-->
         <ProgressBar Minimum="0"
                      Maximum="100"
+                     Height="10"
                      Value="50"
-                     Height="30"
                      IsIndeterminate="True"/>
 
+        <!--Menüs, wie ein Fenster-Menü (Menu) oder ein Kontext-Menü (ContextMenu) werden mit MenuItems befüllt.
+        Diese können ihrerseits weitere MenuItems aufnehmen, wodurch sich dann Untermenüs bilden-->
         <Menu>
             <MenuItem Header="_Datei">
-                <MenuItem Header="_Neu">
-                    <MenuItem Header="Neues _Fenster" Click="Neu_Click"/>
-                    <MenuItem Header="Neues _Dialog-Fenster" Click="Dialog_Click"/>
+                <MenuItem Header="Neu">
+                    <MenuItem Header="_Neu" Click="OpenWindow"/>
+                    <MenuItem Header="_Dialog" Click="OpenDialogWindow"/>
                 </MenuItem>
-                <MenuItem Header="_Schließen" Click="Schließen_Click"/>
+                <MenuItem Header="_Speichern"/>
+                <MenuItem Header="S_chließen" Click="CloseWindow"/>
             </MenuItem>
             <MenuItem Header="_Hilfe"/>
         </Menu>
 
+        <!--Ribbons sind die 'neuen' MS-Menüs-->
         <Ribbon>
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu>
@@ -110,15 +123,15 @@
 
             <RibbonTab Header="Ansicht">
                 <RibbonGroup Header="Listenansicht">
-                    <RibbonButton/>
                     <RibbonCheckBox/>
                     <RibbonComboBox/>
+                    <RibbonButton/>
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>
 
-        <Button x:Name="Btn_ok" Content="Ok" Click="Btn_ok_Click"/>
-
+        <Button x:Name="Btn_ok" Content="OK" Click="Btn_ok_Click"/>
     </StackPanel>
-
 </Window>
+
+

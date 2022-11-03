@@ -37,35 +37,35 @@ namespace Controls
             Lbl_Output.Content = Sdr_Wert.Value;
         }
 
-        private void Schließen_Click(object sender, RoutedEventArgs e)
+        private void OpenWindow(object sender, RoutedEventArgs e)
         {
-            if(MessageBox.Show
+            //Öffen eines neuen Fensters als gleichberechtigtes Fenster
+            new MainWindow() { Title = "Neues Fenster" }.Show();
+        }
+
+        private void OpenDialogWindow(object sender, RoutedEventArgs e)
+        {
+
+            //Öffnen eines neuen Fensters als Dialogfenster mit Rückgabe des DialogResults
+            bool? dialogresult = new MainWindow() { Title = "Neues Dialogfenster" }.ShowDialog();
+            MessageBox.Show(dialogresult.ToString());
+        }
+
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show
                 (
-                "Soll das Fenster wirklich geschlossen werden?",
-                "Programm beenden",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question
+                    "Soll das Fenster wirklich geschlossen werden?",
+                    "Programm beenden",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question
                 ) == MessageBoxResult.Yes)
+
+                //Schließen des Fensters
                 this.Close();
-        }
 
-        private void Neu_Click(object sender, RoutedEventArgs e)
-        {
-            Window wnd = new MainWindow();
-
-            wnd.Title = "Neues Fenster";
-
-            wnd.Show();
-        }
-
-        private void Dialog_Click(object sender, RoutedEventArgs e)
-        {
-            Window wnd = new MainWindow();
-
-            wnd.Title = "Neues Dialog-Fenster";
-
-            if (wnd.ShowDialog() == true)
-                Lbl_Output.Content = "Es wurde OK geklickt";
+            //Beenden der Applikation
+            //Application.Current.Shutdown();
         }
 
         private void Btn_ok_Click(object sender, RoutedEventArgs e)
