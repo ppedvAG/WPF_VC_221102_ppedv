@@ -36,5 +36,41 @@ namespace Controls
             //Neuzuweisung der Content-Eigenschaft des Labels mit dem Wert des Sliders
             Lbl_Output.Content = Sdr_Wert.Value;
         }
+
+        private void Schließen_Click(object sender, RoutedEventArgs e)
+        {
+            if(MessageBox.Show
+                (
+                "Soll das Fenster wirklich geschlossen werden?",
+                "Programm beenden",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+                ) == MessageBoxResult.Yes)
+                this.Close();
+        }
+
+        private void Neu_Click(object sender, RoutedEventArgs e)
+        {
+            Window wnd = new MainWindow();
+
+            wnd.Title = "Neues Fenster";
+
+            wnd.Show();
+        }
+
+        private void Dialog_Click(object sender, RoutedEventArgs e)
+        {
+            Window wnd = new MainWindow();
+
+            wnd.Title = "Neues Dialog-Fenster";
+
+            if (wnd.ShowDialog() == true)
+                Lbl_Output.Content = "Es wurde OK geklickt";
+        }
+
+        private void Btn_ok_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+        }
     }
 }

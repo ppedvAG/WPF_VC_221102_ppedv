@@ -44,7 +44,14 @@
                  Height="60"
                  AcceptsReturn="True"
                  AcceptsTab="True"
-                 TextWrapping="WrapWithOverflow"/>
+                 TextWrapping="WrapWithOverflow">
+            <TextBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Kopieren"/>
+                    <MenuItem Header="Einfügen"/>
+                </ContextMenu>
+            </TextBox.ContextMenu>
+        </TextBox>
 
         <!--ItemControls wie ComboBoxen oder ListViews können über die ItemsSource-Property mit Daten 
         oder in XAML mit Items mit Content-Property bestückt werden-->
@@ -76,6 +83,41 @@
                 TickPlacement="BottomRight"
                 TickFrequency="10"
                 IsSnapToTickEnabled="True"/>
+
+        <ProgressBar Minimum="0"
+                     Maximum="100"
+                     Value="50"
+                     Height="30"
+                     IsIndeterminate="True"/>
+
+        <Menu>
+            <MenuItem Header="_Datei">
+                <MenuItem Header="_Neu">
+                    <MenuItem Header="Neues _Fenster" Click="Neu_Click"/>
+                    <MenuItem Header="Neues _Dialog-Fenster" Click="Dialog_Click"/>
+                </MenuItem>
+                <MenuItem Header="_Schließen" Click="Schließen_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Hilfe"/>
+        </Menu>
+
+        <Ribbon>
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu>
+                    <RibbonApplicationMenuItem Header="Speichern"/>
+                </RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>
+
+            <RibbonTab Header="Ansicht">
+                <RibbonGroup Header="Listenansicht">
+                    <RibbonButton/>
+                    <RibbonCheckBox/>
+                    <RibbonComboBox/>
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+
+        <Button x:Name="Btn_ok" Content="Ok" Click="Btn_ok_Click"/>
 
     </StackPanel>
 
