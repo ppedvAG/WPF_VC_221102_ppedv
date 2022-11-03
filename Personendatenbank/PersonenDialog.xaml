@@ -6,15 +6,15 @@
         xmlns:local="clr-namespace:Personendatenbank"
         mc:Ignorable="d"
         Title="Neue Person" 
-        Height="379"
+        SizeToContent="Height"
         Width="285" 
         ResizeMode="NoResize" 
-        WindowStartupLocation="CenterScreen" 
+        WindowStartupLocation="CenterScreen"
         Topmost="True"
         FontSize="14.0">
 
     <Window.Background>
-        <LinearGradientBrush>
+        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1, 0.5">
             <GradientStop Color="LightYellow" Offset="0"/>
             <GradientStop Color="Orange" Offset="1"/>
         </LinearGradientBrush>
