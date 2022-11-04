@@ -12,28 +12,34 @@
         ButtonBase.Click="Wnd_Main_Click"
         TextBoxBase.TextChanged="Wnd_Main_TextChanged">
 
-    <StackPanel Margin="5" x:Name="Aqua" Background="Aqua"
+    <!--RoutedEvents, wie PreviewMouseDown/MouseDown werden durch den kompletten Logic-Tree des XAML-Codes gereicht
+        und können auf jeder Ebene abgefangen und bearbeitet werden. Preview-Events werden von oben nach unten gereicht,
+        dann wird das entsprechende Element-Event geworfen, danach wird das Nicht-Preview-Event nach oben gereicht.-->
+    <StackPanel x:Name="Aqua" Background="Aqua" 
                 PreviewMouseDown="SP_PreviewMouseDown"
                 MouseDown="SP_MouseDown">
-        <StackPanel Margin="20" x:Name="Grün" Background="Green"
+        <StackPanel x:Name="Grün" Background="Green" Margin="20" Height="300" 
                     PreviewMouseDown="SP_PreviewMouseDown"
                     MouseDown="SP_MouseDown">
-            <StackPanel Margin="20" x:Name="Gelb" Background="Yellow"
+            <StackPanel x:Name="Gelb" Background="Yellow" Margin="20" Height="200" 
                         PreviewMouseDown="SP_PreviewMouseDown"
                         MouseDown="SP_MouseDown">
-                <StackPanel Margin="20" x:Name="Blau" Background="Blue" Height="70"
+                <StackPanel x:Name="Blau" Background="Blue" Margin=" 20" Height="60" 
                             PreviewMouseDown="SP_PreviewMouseDown"
                             MouseDown="SP_MouseDown">
-                    
-                    <Button x:Name="Btn_Klick" Content="Klick mich"
+                    <Button x:Name="Btn_Klick" Content="Klick" 
                             Click="Btn_Klick_Click"/>
-                    <TextBox x:Name="Tbx_Text"
-                            TextChanged="Tbx_Text_TextChanged"/>
-                    
+                    <TextBox x:Name="Tbx_Text" Text="Text" 
+                             TextChanged="Tbx_Text_TextChanged"/>
                 </StackPanel>
+                <StackPanel x:Name="Rot" Background="Red" Margin=" 20" Height="30" 
+                            PreviewMouseDown="SP_PreviewMouseDown"
+                            MouseDown="SP_MouseDown"/>
             </StackPanel>
         </StackPanel>
         <TextBlock x:Name="Tbl_Output" Height="200" Background="White"/>
+        <Button x:Name="Btn_BaseTest" Content="ButtonBase-Test"/>
+        <TextBox x:Name="Tbx_BaseTest" Text="TextBoxBase-Test"/>
     </StackPanel>
-
 </Window>
+

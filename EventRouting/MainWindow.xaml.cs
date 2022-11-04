@@ -25,6 +25,31 @@ namespace EventRouting
             InitializeComponent();
         }
 
+        //Event, welches von den StackPanels während der Tunneling-Phase geworfen wird
+        private void SP_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //Leeren des Textblocks zu Beginn und Ausgabe des OriginalSource-Objekts
+            if ((sender as FrameworkElement).Name == "Aqua")
+                Tbl_Output.Text = $"Origin: {(e.OriginalSource as FrameworkElement)?.Name}\n\n";
+
+            //Ausgabe des Namens des werfenden StackPanles (sender)
+            Tbl_Output.Text += (sender as FrameworkElement).Name + " Tunnel/Preview\n";
+        }
+
+        //Event, welches von den StackPanels während der Bubbleing-Phase geworfen wird
+        private void SP_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //Ausgabe des Namens des werfenden StackPanles (sender)
+            Tbl_Output.Text += (sender as FrameworkElement).Name + " Bubble\n";
+
+            //Handling des Events abschließen (= Weiterleitung wird unterbunden), wenn der Name des werfenden StackPanels "Gelb" ist
+            if ((sender as FrameworkElement).Name == "Gelb")
+            {
+                e.Handled = true;
+                Tbl_Output.Text += "Handled\n";
+            }
+        }
+
         //Click-Event des Buttons (Automatischer Handling-Abschluss)
         private void Btn_Klick_Click(object sender, RoutedEventArgs e)
         {
@@ -55,22 +80,6 @@ namespace EventRouting
             if (Tbl_Output != null)
                 //Ausgabe
                 Tbl_Output.Text += (sender as FrameworkElement).Name + " TextBoxBase.TextChanged\n";
-        }
-
-        private void SP_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if ((sender as FrameworkElement).Name == "Aqua")
-                Tbl_Output.Text += "Origin: " + (e.OriginalSource as FrameworkElement).Name + "\n";
-
-            Tbl_Output.Text += (sender as FrameworkElement).Name + " Tunneling/Preview\n";
-        }
-
-        private void SP_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Tbl_Output.Text += (sender as FrameworkElement).Name + " Bubbleing\n";
-
-            if ((sender as FrameworkElement).Name == "Gelb")
-                e.Handled = true;
         }
     }
 }
