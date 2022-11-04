@@ -7,17 +7,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventRouting"
         mc:Ignorable="d"
-        Title="MainWindow" Height="247" Width="477"
+        Title="MainWindow" Height="373" Width="349"
         x:Name="Wnd_Main"
         ButtonBase.Click="Wnd_Main_Click"
         TextBoxBase.TextChanged="Wnd_Main_TextChanged">
-    
-    <StackPanel Margin="5">
-        <Button x:Name="Btn_Klick" Content="Klick mich"
-                Click="Btn_Klick_Click"/>
-        <TextBox x:Name="Tbx_Text"
-                 TextChanged="Tbx_Text_TextChanged"/>
-        <TextBlock x:Name="Tbl_Output" Height="200"/>
+
+    <StackPanel Margin="5" x:Name="Aqua" Background="Aqua"
+                PreviewMouseDown="SP_PreviewMouseDown"
+                MouseDown="SP_MouseDown">
+        <StackPanel Margin="20" x:Name="Grün" Background="Green"
+                    PreviewMouseDown="SP_PreviewMouseDown"
+                    MouseDown="SP_MouseDown">
+            <StackPanel Margin="20" x:Name="Gelb" Background="Yellow"
+                        PreviewMouseDown="SP_PreviewMouseDown"
+                        MouseDown="SP_MouseDown">
+                <StackPanel Margin="20" x:Name="Blau" Background="Blue" Height="70"
+                            PreviewMouseDown="SP_PreviewMouseDown"
+                            MouseDown="SP_MouseDown">
+                    
+                    <Button x:Name="Btn_Klick" Content="Klick mich"
+                            Click="Btn_Klick_Click"/>
+                    <TextBox x:Name="Tbx_Text"
+                            TextChanged="Tbx_Text_TextChanged"/>
+                    
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <TextBlock x:Name="Tbl_Output" Height="200" Background="White"/>
     </StackPanel>
-    
+
 </Window>
