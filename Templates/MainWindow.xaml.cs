@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Resources_Styles
+namespace Templates
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -27,8 +27,7 @@ namespace Resources_Styles
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Manipulation einer Ressource über deren Container und Key (Objekte, welche dynamisch angebunden sind, übernehmen sofort die Veränderung)
-            Spl_Main.Resources["Scb_LightGreen"] = new SolidColorBrush(Colors.LightBlue);
+            MessageBox.Show("Button funktioniert");
         }
     }
 }
