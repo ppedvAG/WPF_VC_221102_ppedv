@@ -18,7 +18,7 @@
                 <local:Person Vorname="Anna" Nachname="Meier" Alter="29"/>
             </StackPanel.DataContext>
 
-            <TextBox Text="{Binding Vorname}"/>
+            <TextBox Text="{Binding Path=Vorname}"/>
             <TextBlock Text="{Binding Nachname}"/>
             <TextBlock Text="{Binding Alter}"/>
             <TextBlock Text="{Binding WichtigeTage[0].Year}"/>
