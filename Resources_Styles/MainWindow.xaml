@@ -16,6 +16,7 @@
         den CodeBehind reagiert.-->
     <Window.Resources>
         <sys:Double x:Key="globalFontSize">25.0</sys:Double>
+        <SolidColorBrush Color="Green" x:Key="Scb_LightGreen"/>
     </Window.Resources>
 
     <StackPanel x:Name="Spl_Main">

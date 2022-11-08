@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Templates"
         mc:Ignorable="d"
-        Title="MainWindow" Height="244" Width="266">
+        Title="MainWindow" Height="297" Width="266"
+        Topmost="True">
     <Window.Resources>
 
         <Style TargetType="Button">
@@ -43,6 +44,16 @@
 
         </Style>
 
+        <DataTemplate DataType="{x:Type local:Person}">
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding Vorname}" Margin="2"/>
+                <TextBlock Text="{Binding Nachname}" Margin="2"/>
+                <TextBlock Text="{Binding Alter, StringFormat='({0})'}" Margin="2"/>
+                <Button x:Name="Btn_Löschen" Content="Löschen" Click="Btn_Löschen_Click"
+                                Tag="{Binding}"/>
+            </StackPanel>
+        </DataTemplate>
+
     </Window.Resources>
 
     <StackPanel>
@@ -52,6 +63,27 @@
                 Width="100"
                 Background="Aqua"
                 Click="Button_Click"/>
+
+        <ListBox ItemsSource="{Binding Personenliste}"
+                 Height="150"
+                 x:Name="Lbx_Personen"
+                 SelectedValuePath="Vorname">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:Person}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Text="{Binding Vorname}" Margin="2"/>
+                        <TextBlock Text="{Binding Nachname}" Margin="2"/>
+                        <TextBlock Text="{Binding Alter, StringFormat='({0})'}" Margin="2"/>
+                        <Button x:Name="Btn_Löschen" Content="Löschen" Click="Btn_Löschen_Click"
+                                Tag="{Binding}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <TextBlock Text="{Binding ElementName=Lbx_Personen, Path=SelectedIndex, StringFormat='SelectedIndex: {0:00.00}'}"/>
+        <Label Content="{Binding ElementName=Lbx_Personen, Path=SelectedItem, TargetNullValue=NULL}"/>
+        <TextBlock Text="{Binding ElementName=Lbx_Personen, Path=SelectedValue, TargetNullValue=NULL}"/>
     </StackPanel>
 
 </Window>

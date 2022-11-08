@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,11 +24,25 @@ namespace Templates
         public MainWindow()
         {
             InitializeComponent();
+
+            this.DataContext = this;
         }
+
+        public ObservableCollection<Person> Personenliste { get; set; } = new ObservableCollection<Person>()
+        {
+            new Person(){Vorname="Anna", Nachname="Nass", Alter=34},
+            new Person(){Vorname="Rainer", Nachname="Zufall", Alter=65},
+            new Person(){Vorname="Maria", Nachname="Meier", Alter=55},
+        };
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Button funktioniert");
+        }
+
+        private void Btn_Löschen_Click(object sender, RoutedEventArgs e)
+        {
+            Personenliste.Remove((sender as Button).Tag as Person);
         }
     }
 }
