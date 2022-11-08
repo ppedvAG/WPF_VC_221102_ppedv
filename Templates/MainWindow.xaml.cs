@@ -25,24 +25,30 @@ namespace Templates
         {
             InitializeComponent();
 
+            //Vorbereitung
+            Personenliste = new ObservableCollection<Person>()
+            {
+                new Person(){Vorname="Otto", Nachname="Meier", Alter=55},
+                new Person(){Vorname="Jürgen", Nachname="Müller", Alter=78},
+                new Person(){Vorname="Maria", Nachname="Schmidt", Alter=24}
+            };
+
             this.DataContext = this;
         }
 
-        public ObservableCollection<Person> Personenliste { get; set; } = new ObservableCollection<Person>()
-        {
-            new Person(){Vorname="Anna", Nachname="Nass", Alter=34},
-            new Person(){Vorname="Rainer", Nachname="Zufall", Alter=65},
-            new Person(){Vorname="Maria", Nachname="Meier", Alter=55},
-        };
+        public ObservableCollection<Person> Personenliste { get; set; }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Button funktioniert");
         }
 
-        private void Btn_Löschen_Click(object sender, RoutedEventArgs e)
+        private void Btn_Loeschen_Click(object sender, RoutedEventArgs e)
         {
-            Personenliste.Remove((sender as Button).Tag as Person);
+            //Löschen der Person, welche in dem Button-Tag liegt
+            if ((sender as Button).Tag is Person)
+                Personenliste.Remove((sender as Button).Tag as Person);
         }
     }
 }
