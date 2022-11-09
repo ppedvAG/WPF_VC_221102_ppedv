@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UserControls;
 
 namespace Trigger
 {
@@ -21,26 +22,43 @@ namespace Trigger
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        //Property, auf die der DataTrigger reagiert
+        private bool boolVal;
+        public bool BoolVal
+        {
+            get { return boolVal; }
+            //Setter mit Event-Wurf
+            set { boolVal = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(BoolVal))); }
+        }
+
+
         public MainWindow()
         {
             InitializeComponent();
 
+            this.BoolVal = true;
+
+            //Setzen des DataContext
             this.DataContext = this;
         }
 
-        private bool boolVal;
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        public bool BoolVal
-        {
-            get { return boolVal; }
-            set { boolVal = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(BoolVal))); }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        //EventHandler zum Ändern der Property
+        private void Btn_Ändern_Click(object sender, RoutedEventArgs e)
         {
             BoolVal = !BoolVal;
+        }
+
+        private void ColorPicker_PickedColorChanged(object sender, RoutedPropertyChangedEventArgs<SolidColorBrush> e)
+        {
+            if ((sender as ColorPicker).PickedColor.ToString().Equals("#FF000000"))
+                MessageBox.Show("Alles ist schwarz");
+        }
+
+        private void ColorPicker_Tap(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(ColorPicker.PickedColor.ToString());
         }
     }
 }
