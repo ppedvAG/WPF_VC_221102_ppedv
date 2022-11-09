@@ -5,9 +5,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Trigger"
-        xmlns:uc="clr-namespace:UserControls;assembly=UserControls"
+        xmlns:uc="clr-namespace:UserControls;assembly=M11_UserControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="380" Width="324">
+    
     <!--Mittels Triggern kann das Verhalten/Aussehen von Objekten unter bestimmten Umständen geändert werden-->
     <StackPanel x:Name="Spl_Main"
                 Background="{Binding ElementName=ColorPicker, Path=PickedColor}">
@@ -56,15 +57,23 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
+        
 
         <Button x:Name="Btn_Ändern" Click="Btn_Ändern_Click" Content="Ändern"/>
 
+        <!--Beispiel-Einbindung des UserControls aus M11_UserControls-->
         <uc:ColorPicker x:Name="ColorPicker" 
                         PickedColorChanged="ColorPicker_PickedColorChanged"
                         Tap="ColorPicker_Tap">
-            <Button Content="{Binding ElementName=Tbl_Test, Path=Text}"
-                    uc:ColorPicker.Count="2"/>
+            <!--Bsp-Verwendung des UserControl-Contents und einer AttachedProperty aus der ColorPicker-Klasse-->
+            <Button uc:ColorPicker.Count="2"
+                    Click="Button_Click">
+                <Button.Content>
+                    <Binding ElementName="Tbl_Test" Path="Text" />
+                </Button.Content>
+            </Button>
         </uc:ColorPicker>
 
     </StackPanel>
+
 </Window>

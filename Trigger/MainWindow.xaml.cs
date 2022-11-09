@@ -42,6 +42,16 @@ namespace Trigger
 
             //Setzen des DataContext
             this.DataContext = this;
+
+
+            Button btn = new Button();
+            
+            Binding b = new Binding("Text");
+            b.Source = Tbl_Test;
+            
+            BindingOperations.SetBinding(btn, ContentProperty, b);
+            
+            ColorPicker.MyContent = btn;
         }
 
         //EventHandler zum Ändern der Property
@@ -50,6 +60,7 @@ namespace Trigger
             BoolVal = !BoolVal;
         }
 
+        //EventHandler des UserControls (vgl. M11_UserControls)
         private void ColorPicker_PickedColorChanged(object sender, RoutedPropertyChangedEventArgs<SolidColorBrush> e)
         {
             if ((sender as ColorPicker).PickedColor.ToString().Equals("#FF000000"))
@@ -59,6 +70,13 @@ namespace Trigger
         private void ColorPicker_Tap(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(ColorPicker.PickedColor.ToString());
+        }
+
+        //EventHandler des Buttons
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //Zugriff auf AttachedProperty
+            MessageBox.Show(ColorPicker.GetCount(sender as Button).ToString());
         }
     }
 }
