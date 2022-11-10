@@ -3,6 +3,11 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <sys:Double x:Key="Dbl_Fontsize">14</sys:Double>
+    
+    <Style TargetType="Menu">
+        <Setter Property="FontSize" Value="{StaticResource Dbl_Fontsize}"/>
+        <Setter Property="Background" Value="{x:Null}"/>
+    </Style>
 
     <Style TargetType="Window" x:Key="Sty_Wnd">
         <Setter Property="Background">
